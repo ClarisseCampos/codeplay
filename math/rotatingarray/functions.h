@@ -8,5 +8,6 @@
 void writeArray(int x_array[SIZE]);
 void randomFilling(int x_array[SIZE]);
 void turnLeft(int x_array[SIZE], int times);
+void turnRight(int x_array[SIZE], int times);
 
 #endif

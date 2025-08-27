@@ -32,3 +32,20 @@ void turnLeft(int x_array[SIZE], int times){
         x_array[SIZE - 1] = temp0;        
     }
 }
+
+void turnRight(int x_array[SIZE], int times){
+
+    int i, j, temp, tempS;
+
+    for(j = 0; j < times; j++)
+    {
+        tempS = x_array[SIZE-1];
+        
+        for(i = 0; i < SIZE; i++){
+            temp = x_array[i + 1];
+            x_array[i + 1] = x_array[i];
+            x_array[i] = temp;
+        }
+        x_array[0] = tempS;        
+    }
+}
