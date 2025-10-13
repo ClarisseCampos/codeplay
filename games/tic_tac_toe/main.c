@@ -6,28 +6,38 @@ void matrixRand(char matrix[N][N]){
    int j;
    // primeira linha
    for(j = 0;j < N;j++){
-        matrix[0][j] = 65 + j;
+        matrix[0][j] = 97 + j;
    }
     //segunda linha
    for(j = 3;j < N+3;j++){
-        matrix[1][j-3] = 65 + j;
+        matrix[1][j-3] = 97 + j;
    }
     //terceira linha
    for(j = 6;j < N+6;j++){
-        matrix[2][j-6] = 65 + j;
+        matrix[2][j-6] = 97 + j;
    }
         
 }
 
-void setRole(char matrix[N][N], char role){
-    int i, j;
+int setRole(char matrix[N][N], char role){
+    int i,j;
+    char letter;
     
     printf("\n----- %c ROLE -----", role); 
-    printf("\nSet LINE position: "); scanf("%d", &i); 
-    printf("\nSet COLUMN position: "); scanf("%d", &j);
+    printf("\nSet LINE position: "); scanf("%c", &letter); 
+    fflush(stdin);
+    printf("\n");
 
-    i -= 1; j -= 1; 
-    matrix[i][j] = role;
+    for(i = 0;i < N; i++){
+        for(j = 0;j < N;j++){
+            if(matrix[i][j] == letter){
+                matrix[i][j] = role;
+                return 1;
+            }
+
+        }
+    }
+    return 0;
 }
 
 int gameOverCheckOut(char matrix[N][N], char role){
@@ -65,16 +75,19 @@ int main(){
 
     char matrix[N][N];
 
-    matrixRand(matrix); writeMatrix(matrix);
+    matrixRand(matrix); 
+    writeMatrix(matrix);
 
     for(;;){
         setRole(matrix,'X');
-        writeMatrix(matrix);
+       // writeMatrix(matrix);
 
         if(!gameOverCheckOut(matrix,'X')){
             printf("\nGAME OVER! X won.");
             break;
         }
+
+        fflush(stdin); fflush(stdout);
 
         setRole(matrix,'O');
         writeMatrix(matrix);
