@@ -16,7 +16,7 @@ void copa(int size, int log) {
 	int i, j, k, m;
 
 	for(i = size; i >= -1; i--) {
-
+        
 		for(j = -1; j <= i; j++) {
 			printf(" ");
 		}
