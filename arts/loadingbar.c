@@ -15,7 +15,7 @@ int main() {
     for(i = 0, j = 1; i <= 100; i+=10, j++){
         printf("Loading [%c]: %d%%\r",charchoose(j),i);
         fflush(stdout);
-        usleep(150000);
+        usleep(155000);
     }
     
     return 0; 
