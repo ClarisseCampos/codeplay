@@ -20,3 +20,5 @@ int main() {
     
     return 0; 
 }
+// WARNING: uses POSIX sleep (unistd.h).
+// This breaks portability: works on UNIX-like systems, not on Windows.
