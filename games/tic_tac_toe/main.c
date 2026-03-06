@@ -1,102 +1,85 @@
 #include <stdio.h>
-#include <time.h>
+#include <stdlib.h>
 #define N 3
 
-void matrixRand(char matrix[N][N]){
-   int j;
-   // primeira linha
-   for(j = 0;j < N;j++){
-        matrix[0][j] = 97 + j;
-   }
-    //segunda linha
-   for(j = 3;j < N+3;j++){
-        matrix[1][j-3] = 97 + j;
-   }
-    //terceira linha
-   for(j = 6;j < N+6;j++){
-        matrix[2][j-6] = 97 + j;
-   }
-        
+void generateMatrix(char m[N][N]) {
+    int i, j;
+    char ch = '1';
+	for(i = 0; i < N; i++) {
+		for(j = 0; j < N ; j++) {
+			m[i][j] = ch;
+            ch++;
+		}
+	}
+}
+void printMatrix(char m[N][N]) {
+    int i, j;
+	for(i = 0; i < N; i++) {
+		for(j = 0; j < N ; j++) {
+			printf("%c\t", m[i][j]);
+		}
+		printf("\n\n");
+	}
 }
 
-int setRole(char matrix[N][N], char role){
-    int i,j;
-    char letter;
-    
-    printf("\n----- %c ROLE -----", role); 
-    printf("\nSet LINE position: "); scanf("%c", &letter); 
-    fflush(stdin);
+int play(char c, char m[N][N]){
+    int i, j;
+    char cordinates;
+    printf("\n-> %c role: ", c); scanf(" %c", &cordinates);
     printf("\n");
 
     for(i = 0;i < N; i++){
-        for(j = 0;j < N;j++){
-            if(matrix[i][j] == letter){
-                matrix[i][j] = role;
+        for(j = 0;j < N; j++){
+            if(m[i][j] == cordinates){
+                m[i][j] = c;break;
+            }
+        }
+    }
+    m[i][j] = c;
+
+    if(m[0][0] == m[1][1] && m[1][1] == m[2][2]){
+        return 1;
+    }else if(m[0][2] == m[1][1] && m[1][1] == m[2][0]){
+        return 1;
+    }else{
+        for(i = 0;i < N; i++){
+            if(m[i][0] == m[i][1] && m[i][1] == m[i][2]){
                 return 1;
             }
-
         }
-    }
-    return 0;
-}
-
-int gameOverCheckOut(char matrix[N][N], char role){
-    int i;
-    // checar linhas e colunas
-    for(i = 0;i < N; i++){
-        if((matrix[i][0] == matrix[i][1] && matrix[i][1] == matrix[i][2] && matrix[i][2] == role) || (matrix[0][i] == matrix[1][i] && matrix[1][i] == matrix[2][i] && matrix[2][i] == role)){
-            return 0;
-        }
-    }
-    // checar diagonais
-    if((matrix[0][0] == matrix[1][1] && matrix[1][1] == matrix[2][2] && matrix[2][2] == role) || (matrix[0][2] == matrix[1][1] && matrix[1][1] == matrix[2][0] && matrix[2][0] == role)){
-        return 0;
-    }
-
-    return 1;
-}
-
-void writeMatrix(char matrix[N][N]){
-    int i, j;
-    for(i = 0; i < N; i++){
-        printf("|");
-        for(j = 0; j < N; j++){
-            
-            printf("%c", matrix[i][j]);
-            if(j != (N-1)){
-                printf("    ");
+        for(j = 0;j < N; j++){
+            if(m[0][j] == m[1][j] && m[1][j] == m[2][j]){
+                return 1;
             }
         }
-        printf("|"); printf("\n\n");
     }
-}
-
-int main(){
-
-    char matrix[N][N];
-
-    matrixRand(matrix); 
-    writeMatrix(matrix);
-
-    for(;;){
-        setRole(matrix,'X');
-       // writeMatrix(matrix);
-
-        if(!gameOverCheckOut(matrix,'X')){
-            printf("\nGAME OVER! X won.");
-            break;
-        }
-
-        fflush(stdin); fflush(stdout);
-
-        setRole(matrix,'O');
-        writeMatrix(matrix);
-
-        if(!gameOverCheckOut(matrix,'O')){
-            printf("\nGAME OVER! O won.");
-            break;
-        }
-    }
-
     return 0;
+}
+int main(){
+	char m[N][N];
+	int i, verify;
+	
+	printf("\n====# TIC TAC TOE #====\n");
+    generateMatrix(m);printMatrix(m);
+	
+	for(i = 0;i < 9; i++){
+	    if(i % 2 == 0){
+	        verify = play('X', m);
+	        printMatrix(m);
+            if(verify == 1){
+                printf("\nGAMER OVER! Usuario X ganhou\n");break;
+            }
+	    }else{
+	        verify = play('O', m);
+            printMatrix(m);
+            if(verify == 1){
+                printf("\nGAMER OVER! Usuario O ganhou\n"); break;
+            }
+	    }
+    }
+    // nao ta rolando
+    printf("\nPress Enter no quit\n");
+    getchar(); getchar();
+
+	return 0;
 }
