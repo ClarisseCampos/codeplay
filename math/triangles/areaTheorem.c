@@ -1,13 +1,17 @@
 #include <stdio.h>
-// a = b*h/2
+#include <math.h>
+//a = a*b*sin(teta)/2
+//compilar com: gcc areaTheorem.c -o output -lm
 int main(){
-    float area, base, height;
+    float area,a,b,theta;
+    printf("\nSet side a: ");scanf("%f", &a);
+    printf("\nSet side b: ");scanf("%f", &b);
+    printf("\nSet angle between a-b: ");scanf("%f", &theta);
 
-    printf("\nSet triangle base: "); scanf("%f", &base);
-    printf("\nSet triangle height: "); scanf("%f", &height);
+    theta = theta*(acos(-1.0)/180); // deg -> rad
 
-    height = base*height/2.0;
+    area = a*b*(sin(theta))/2.0;
 
-    printf("\nArea of the triangle: %.2f", height);
+    printf("\nArea: %.2f", area);
     return 0;
 }
