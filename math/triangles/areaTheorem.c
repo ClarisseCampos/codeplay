@@ -8,7 +8,7 @@ int main(){
     printf("\nSet side b: ");scanf("%f", &b);
     printf("\nSet angle between a-b: ");scanf("%f", &theta);
 
-    theta = theta*(acos(-1.0)/180); // deg -> rad
+    theta *= acos(-1.0)/180; // deg -> rad
 
     area = a*b*(sin(theta))/2.0;
 
