@@ -1,12 +1,17 @@
 #include <stdio.h>
 #define SQRT3 1.73205
 // a = l^2 * sqrt(3) / 4
+void inputData(double * side){
+    printf("\nSet triangle side: "); scanf("%lf", side);
+}
+double equilateralT_area(double side){
+    return side*side*SQRT3/4.0;
+}
 int main(){
-    float side, area;
+    double side, area;
+    inputData(&side);
 
-    printf("\nSet triangle side: "); scanf("%f", &side);
-
-    area = side*side*SQRT3/4.0;
+    area = equilateralT_area(side);
 
     printf("\nArea: %.2f", area);
     

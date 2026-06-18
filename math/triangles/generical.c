@@ -1,13 +1,18 @@
 #include <stdio.h>
 // a = b*h/2
+void inputData(double * base, double * height){
+    printf("\nSet triangle base: "); scanf("%lf", base);
+    printf("\nSet triangle height: "); scanf("%lf", height);
+}
+double genericalT_area(double base, double height){
+    return base*height/2.0;
+}
 int main(){
-    float area, base, height;
+    double area, base, height;
+    inputData(&base, &height);
 
-    printf("\nSet triangle base: "); scanf("%f", &base);
-    printf("\nSet triangle height: "); scanf("%f", &height);
+    area = genericalT_area(base,height);
 
-    height = base*height/2.0;
-
-    printf("\nArea of the triangle: %.2f", height);
+    printf("\nArea: %.2f", area);
     return 0;
 }
