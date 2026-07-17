@@ -1,31 +1,35 @@
 #include <stdio.h>
-#include <math.h>
 
-int main()
-{
-    int num, rest, counter = 0, numBinary = 0;
-    
-    printf("\nSet a number: "); scanf("%d", &num);
-    
-    int i = 0, numSave = num;
-    do{
-        rest = num % 2;
-        num /= 2;
-        counter++;
-        
-        i++;
-    }while (num != 0);
-    
-    num = numSave;
-    
-    for(i = 0; i < counter; i++){
-        rest = num % 2;
-        num /= 2;
-        
-        numBinary += rest*pow(10,i);
+int qbits(int num){
+    int qtd = 0;
+    while(num > 0){
+        num >>= 1;
+        qtd++;
     }
-    
-    printf("\nBinary representation of %d: %d", numSave, numBinary);
-    
+    return qtd;
+}
+ void convert(int num, int *bin){
+    int i, qtd = qbits(num);
+    for(i = qtd-1; num != 0; i--){
+        bin[i] = num & 1;
+        num >>= 1;
+    }
+ }
+
+int main(){
+
+    int num, qtd;
+    printf("\nSet an integer: "); scanf("%d", &num); 
+
+    qtd = qbits(num);
+
+    int bin[qtd];
+
+    convert(num, bin);
+
+    for(int i = 0;i < qtd; i++){
+        printf("%d", bin[i]);
+    }
+
     return 0;
 }
