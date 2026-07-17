@@ -2,21 +2,21 @@ import os
 import requests
 from dotenv import load_dotenv
 
-# 1. Carrega as variáveis salvas no arquivo .env para a memória
+# carrega as variáveis salvas no .env 
 load_dotenv()
 
 lat = -29.376
 lon = -51.114
 
-# 2. Busca a chave que está escondida na variável de ambiente
+# busca a key escondida no .venv
 api_key = os.getenv("OPENWEATHER_API_KEY")
 
-# Verifica se a chave foi encontrada (evita erros caso o .env não exista)
+# verifica se a api_key foi encontrada
 if not api_key:
     print("Erro: A chave OPENWEATHER_API_KEY não foi encontrada no arquivo .env!")
     exit()
 
-# 3. Monta a URL normalmente usando a chave resgatada
+
 url = f"https://api.openweathermap.org/data/2.5/weather?lat={lat}&lon={lon}&appid={api_key}&units=metric&lang=pt_br"
 
 try:

@@ -17,7 +17,6 @@ int qbits(int num){
  }
 
 int main(){
-
     int num, qtd;
     printf("\nSet an integer: "); scanf("%d", &num); 
 
