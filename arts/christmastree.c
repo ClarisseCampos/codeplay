@@ -1,43 +1,40 @@
 #include <stdio.h>
 
-void tronco(int k, int size){
-    int i, j;
-	size = size*0.3;
-    for(i = 0;i <= size;i++){
-        for(j = 0;j <= k;j++){
+
+void copa(int h){
+    int i,j;
+	printf("\n");
+    for(i = 1; i <= h; i++)
+    {
+		printf("\t");
+        for(j = 0; j < (h-i); j++){
             printf(" ");
         }
-        printf("+\n");
-        
+        for(j = 0; j < 2*i-1; j++){
+            printf("*");
+        }
+        printf("\n");
     }
 }
-
-void copa(int size) {
-	int i, j, k, m;
-
-	for(i = size; i >= -1; i--) {
-        
-		for(j = -1; j <= i; j++) {
+void caule(int h){
+	int i,j;
+	for(i = 0;i < h/3; i++){
+		printf("\t");
+		for(j = 0;j < h-1; j++){
 			printf(" ");
 		}
-		for(k = 0; k <= (size-j); k++) {
-			printf("*");
-		}
-		for(m = 0; m <= k; m++) {
-			printf("*");
-		}
-		printf("\n");
+		printf("##\n");
 	}
-    tronco(k, size);
 }
 
 int main()
 {
-	int size_copa;
+	int altura;
 
-    printf("\nSet tree size: ");scanf("%d", &size_copa);
+    printf("\nSet tree size: ");scanf("%d", &altura);
 	
-	copa(size_copa-2);
+	copa(altura);
+	caule(altura);
 
     printf("\n\tMERRY CHRISTMAS, UHU!\n");
 
