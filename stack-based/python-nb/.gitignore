@@ -18,3 +18,5 @@ __pycache__/
 # Sistema
 .DS_Store
 Thumbs.dbjupyter_env/
+
+jupyter_env
