@@ -48,10 +48,7 @@ if not capitulos:
 
 print(f"\n{len(capitulos)} capítulos encontrados.")
 
-
-# ============================================================
-# 3. Divide o PDF
-# ============================================================
+# Dividir o PDF
 
 for i, capitulo in enumerate(capitulos):
 
@@ -69,14 +66,10 @@ for i, capitulo in enumerate(capitulos):
     # Remove caracteres inválidos do nome do arquivo
     nome = re.sub(r'[\\/*?:"<>|]', "", titulo)
 
-    # Evita nomes absurdamente grandes
+    # Evita nomes grandes
     nome = nome[:100]
 
-    caminho = os.path.join(
-        PASTA_SAIDA,
-        f"{i + 1:02d}_{nome}.pdf"
-    )
-
+    caminho = os.path.join(PASTA_SAIDA, f"{i + 1:02d}_{nome}.pdf")
 
     novo_pdf = pymupdf.open()
 
